@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: #fff;
+    }
+    .login-box {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    input {
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      width: 200px;
+      margin-top: 10px;
+      font-size: 16px;
+      outline: none;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #ff9800;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      color: #fff;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #e68900;
+    }
+    #greeting {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      min-height: 30px;
+      opacity: 1;
+      transform: scale(1);
+    }
+    .popup {
+      animation: popUp 0.6s ease forwards;
+    }
+    @keyframes popUp {
+      0% {
+        transform: scale(0.5);
+        opacity: 0.3;
+      }
+      70% {
+        transform: scale(1.2);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h2>Login dengan Nama</h2>
+    <input type="text" id="nama" placeholder="Masukkan Nama Anda">
+    <br>
+    <button onclick="login()">Login</button>
+    <p id="greeting"></p>
+  </div>
+
+  <script>
+    function login() {
+      const nama = document.getElementById("nama").value.trim();
+      const greeting = document.getElementById("greeting");
+
+      // reset animasi agar bisa dipakai berulang
+      greeting.classList.remove("popup");
+      void greeting.offsetWidth;
+
+      if (nama === "") {
+        greeting.style.color = "yellow";
+        greeting.textContent = "⚠️ Nama tidak boleh kosong!";
+      } else {
+        greeting.style.color = "lightgreen";
+        greeting.textContent = `🎉 Selamat datang, ${nama}!`;
+
+        // animasi sapaan
+        greeting.classList.add("popup");
+
+        // redirect setelah 2 detik ke portofolio.html
+        setTimeout(() => {
+          window.location.href = "portofolio.html";
+        }, 1000);
+      }
+    }
+  </script>
+</body>
+</html>
